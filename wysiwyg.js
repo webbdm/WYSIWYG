@@ -2,7 +2,7 @@ var peepsContainer = document.getElementById('peepsDiv');
 var textInput = document.getElementById('textInput');
 // var clear = document.getElementById("clear");
 var wayne = {
-
+  title: "The Great One",
   name: "Wayne Gretsky",
   bio: "",
   image: "https://s-media-cache-ak0.pinimg.com/originals/b9/1c/b2/b91cb2af28bbf52bd1fb8ec568d6d12f.jpg",
@@ -64,11 +64,6 @@ for(i=0; i< peepsArray.length; i++){
   
 }
 
-
-function bioKey(){
-  document.getElementById('bio').innerHTML += textInput.value;
-}
-
 function enterClear(event){
     if(event.keyCode === 13){
      textInput.value = " ";
@@ -82,19 +77,48 @@ function enterClear(event){
 // });
   
 
+document.body.addEventListener("click",function(){
+
+    console.log("click event in body");
+
+
+});
+
 
 function dottedBorder(event){
-    if(event.target.parentNode.className === "peeps"){
-      
-        event.target.parentNode.classList.add('dotted');
-        textInput.focus();
-        textInput.addEventListener("keypress",bioKey);
-        textInput.addEventListener("keypress",enterClear);
+    //var childBio = this.event.target.firstChild.childNodes[2].childNodes[1];
+    console.log(event);
+    
+    if(event.target.localName === 'img'){
+
+      var cardElement = event.target.parentNode.parentNode.parentNode;
+      var bioElement = event.target.nextElementSibling;
+      if(cardElement.className === "peeps"){
+          console.log("click event in element");
+          cardElement.classList.add('dotted');
+          textInput.focus();
+          console.log(event);
+          textInput.addEventListener("keydown",function(event){
+
+              bioElement.innerHTML = textInput.value;
+
+          });
+          textInput.addEventListener("keydown",enterClear);
         
-      
-    } else if(event.target.parentNode.classList.contains("peeps")){
-        event.target.parentNode.classList.remove('dotted');
-    } 
+      } else if(cardElement.classList.contains("dotted")){
+          cardElement.classList.remove('dotted');
+      } 
+
+    }// }else if(){//p
+
+    // }else if(){//section
+
+    // }else if(){//id or className
+
+    // }  
+
+
+
 }
 
 

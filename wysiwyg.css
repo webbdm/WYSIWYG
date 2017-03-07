@@ -46,7 +46,7 @@ fieldset{
   display: flex;
   width: 90%;
   height: 460px;
-  margin: 7% auto;
+  margin: 2% auto;
 /*   border: 1px solid yellow; */
   flex-flow: row wrap;
   align-items: center;
